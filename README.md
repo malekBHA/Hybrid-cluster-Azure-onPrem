@@ -20,33 +20,7 @@
 
 </div>
 
----
 
-## 📖 Table of Contents
-
-- [Architecture Overview](#-architecture-overview)
-- [Azure Resources Provisioned](#-azure-resources-provisioned)
-- [Step-by-Step: Full Deployment Guide](#-step-by-step-full-deployment-guide)
-  - [1. Network Planning](#1--network-planning)
-  - [2. Create Azure Resource Group](#2--create-azure-resource-group)
-  - [3. Create Virtual Network (VNet)](#3--create-virtual-network-vnet)
-  - [4. Create GatewaySubnet](#4--create-gatewaysubnet-critical)
-  - [5. Create Public IP for VPN Gateway](#5--create-public-ip-for-vpn-gateway)
-  - [6. Create Azure VPN Gateway](#6--create-azure-vpn-gateway)
-  - [7. Configure On-Premises Firewall](#7--configure-on-premises-firewallrouter)
-  - [8. Create Local Network Gateway](#8--create-local-network-gateway)
-  - [9. Create VPN Connection](#9--create-vpn-connection)
-  - [10. Configure IPSec on On-Prem](#10--configure-ipsec-on-on-prem-firewall)
-  - [11. Validate Tunnel & Connectivity](#11--validate-tunnel--connectivity)
-  - [12. Configure NSG Rules](#12--configure-nsg-rules)
-  - [13. Ansible Node Provisioning](#13--ansible-node-provisioning)
-  - [14. Join Azure VM to Kubernetes](#14--join-azure-vm-to-kubernetes-cluster)
-  - [15. Validate Cluster Integration](#15--validate-cluster-integration)
-- [Troubleshooting](#-troubleshooting)
-- [Security Considerations](#-security-considerations)
-- [Project Structure](#-project-structure)
-
----
 
 ## 🏗 Architecture Overview
 
