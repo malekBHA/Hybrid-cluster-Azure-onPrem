@@ -1,0 +1,102 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "virtualMachines_AionWorkerNode_name": {
+            "defaultValue": "AionWorkerNode",
+            "type": "String"
+        },
+        "disks_AionWorkerNode_OsDisk_1_2b02c8c9b40b43829814b9fe1bbcc161_externalid": {
+            "defaultValue": "/subscriptions/b3328bce-13a2-4916-b110-46271a61a8d3/resourceGroups/Aion_VM_group/providers/Microsoft.Compute/disks/AionWorkerNode_OsDisk_1_2b02c8c9b40b43829814b9fe1bbcc161",
+            "type": "String"
+        },
+        "networkInterfaces_aionworkernode1_externalid": {
+            "defaultValue": "/subscriptions/b3328bce-13a2-4916-b110-46271a61a8d3/resourceGroups/Aion_VM_group/providers/Microsoft.Network/networkInterfaces/aionworkernode1",
+            "type": "String"
+        }
+    },
+    "variables": {},
+    "resources": [
+        {
+            "type": "Microsoft.Compute/virtualMachines",
+            "apiVersion": "2025-04-01",
+            "name": "[parameters('virtualMachines_AionWorkerNode_name')]",
+            "location": "francecentral",
+            "properties": {
+                "hardwareProfile": {
+                    "vmSize": "Standard_B2ms"
+                },
+                "additionalCapabilities": {
+                    "hibernationEnabled": false
+                },
+                "storageProfile": {
+                    "imageReference": {
+                        "publisher": "canonical",
+                        "offer": "ubuntu-24_04-lts",
+                        "sku": "server",
+                        "version": "latest"
+                    },
+                    "osDisk": {
+                        "osType": "Linux",
+                        "name": "[concat(parameters('virtualMachines_AionWorkerNode_name'), '_OsDisk_1_2b02c8c9b40b43829814b9fe1bbcc161')]",
+                        "createOption": "FromImage",
+                        "caching": "ReadWrite",
+                        "managedDisk": {
+                            "storageAccountType": "StandardSSD_LRS",
+                            "id": "[parameters('disks_AionWorkerNode_OsDisk_1_2b02c8c9b40b43829814b9fe1bbcc161_externalid')]"
+                        },
+                        "deleteOption": "Delete",
+                        "diskSizeGB": 30
+                    },
+                    "dataDisks": [],
+                    "diskControllerType": "SCSI"
+                },
+                "osProfile": {
+                    "computerName": "[parameters('virtualMachines_AionWorkerNode_name')]",
+                    "adminUsername": "workerMalek",
+                    "linuxConfiguration": {
+                        "disablePasswordAuthentication": true,
+                        "ssh": {
+                            "publicKeys": [
+                                {
+                                    "path": "/home/workerMalek/.ssh/authorized_keys",
+                                    "keyData": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC3T1Hv/O4Ima6+Vo5RvIFY3yz67rfeSRE3XKgWVshdyr3fCdSM1AwXlOB5fGRmnDpxE0sY/idVb+1IdK3LJdKdFtAM43MtIVEeRRK1k1lCyKqfuBdPOTTgjJvqQpt9tphm2w9GEya/zgpy6c1kSNvfGURhLAl6wzWhsJo/oyLhFvyu5Bm2VXAEF9RvuC11ve0VHMJNYjuGwVIQCFkKSN88n1PxdFtcbH6In5goCaf/O47mQTRo7v54SZImLzwcEWhfZRtI20syJXeGJ8u832Eoey8zTDEsla6nonr9/8Wj1FHAIY3jcJyrCep3dFjH1cyNKZivlf5L7EWiw6qKuIRYQzJsuGSwSa8yaGiqXKro2I3g7XANmrct0nU1At9bkaqq21e9meVIK8TnKGQ6o5XK3qadGjR0GLm5MntVOoNiSdcgCgQCBRr3KWdNHGwntyop4qQ+mhq8dET5y2CDHgFyfzJGyChJMYNGne8Bb6RI5TdNuW8oThmhhcLWMzjFhtk= generated-by-azure"
+                                }
+                            ]
+                        },
+                        "provisionVMAgent": true,
+                        "patchSettings": {
+                            "patchMode": "ImageDefault",
+                            "assessmentMode": "ImageDefault"
+                        }
+                    },
+                    "secrets": [],
+                    "allowExtensionOperations": true,
+                    "requireGuestProvisionSignal": true
+                },
+                "securityProfile": {
+                    "uefiSettings": {
+                        "secureBootEnabled": true,
+                        "vTpmEnabled": true
+                    },
+                    "securityType": "TrustedLaunch"
+                },
+                "networkProfile": {
+                    "networkInterfaces": [
+                        {
+                            "id": "[parameters('networkInterfaces_aionworkernode1_externalid')]",
+                            "properties": {
+                                "deleteOption": "Detach"
+                            }
+                        }
+                    ]
+                },
+                "diagnosticsProfile": {
+                    "bootDiagnostics": {
+                        "enabled": true
+                    }
+                }
+            }
+        }
+    ]
+}

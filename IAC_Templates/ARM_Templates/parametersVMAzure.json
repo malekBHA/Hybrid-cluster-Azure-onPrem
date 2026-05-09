@@ -1,0 +1,15 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "virtualMachines_AionWorkerNode_name": {
+            "value": null
+        },
+        "disks_AionWorkerNode_OsDisk_1_2b02c8c9b40b43829814b9fe1bbcc161_externalid": {
+            "value": null
+        },
+        "networkInterfaces_aionworkernode1_externalid": {
+            "value": null
+        }
+    }
+}
