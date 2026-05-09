@@ -621,21 +621,6 @@ flowchart TB
 
 ---
 
-## 🧠 Key Concepts Learned
-
-```mermaid
-flowchart TB
-  subgraph tips["Quick reference"]
-    direction TB
-    T1["GatewaySubnet must be named exactly GatewaySubnet"]
-    T2["HTTP 401 on :10250 from curl means path works — TLS is up"]
-    T3["Swap must be disabled for kubelet"]
-    T4["VPN gateway provisioning often takes ~30-45 minutes"]
-    T5["metrics-server: set kubelet-preferred-address-types for hybrid workers"]
-    T6["kubeadm join tokens expire after 24 hours"]
-    T7["containerd: SystemdCgroup = true"]
-  end
-```
 
 ---
 
